@@ -9,8 +9,8 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.3.4</version> <!-- Совместимая версия Spring Boot -->
-        <relativePath/> <!-- lookup parent from repository -->
+        <version>3.3.4</version>
+        <relativePath/>
     </parent>
 
     <groupId>org.education</groupId>
@@ -19,7 +19,7 @@
     <packaging>jar</packaging>
 
     <properties>
-        <java.version>17</java.version> <!-- Рекомендуемая версия Java -->
+        <java.version>17</java.version>
     </properties>
 
     <dependencies>
@@ -27,14 +27,13 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <!-- Версия не указывается, управляется родительским POM -->
         </dependency>
 
         <!-- Spring Boot Starter Data JPA -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
-            <!-- Версия не указывается, управляется родительским POM -->
+
         </dependency>
 
         <!-- Spring Boot Starter Test -->
@@ -42,7 +41,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
-            <!-- Версия не указывается, управляется родительским POM -->
         </dependency>
 
         <!-- H2 Database -->
@@ -50,7 +48,6 @@
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <scope>runtime</scope>
-            <!-- Версия не указывается, управляется родительским POM -->
         </dependency>
 
         <!-- Lombok -->
@@ -58,16 +55,25 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <scope>provided</scope>
-            <!-- Версия не указывается, но можно добавить -->
         </dependency>
 
         <!-- Thymeleaf -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
-            <!-- Версия не указывается, управляется родительским POM -->
         </dependency>
+
+
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.6.0</version>
+        </dependency>
+
+
     </dependencies>
+
+
 
     <build>
         <plugins>
@@ -75,7 +81,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <!-- Версия не указывается, управляется родительским POM -->
             </plugin>
         </plugins>
     </build>

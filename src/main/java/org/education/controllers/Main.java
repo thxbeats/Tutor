@@ -7,7 +7,7 @@ import org.springframework.ui.Model;
 @Controller
 public class Main {
 
-    @GetMapping("/hello")
+    @GetMapping("/")
     public String hello(Model model) {
         model.addAttribute("message", "Welcome to the Platform");
         return "hello";
