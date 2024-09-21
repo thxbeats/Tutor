@@ -1,29 +1,22 @@
-package org.education.model;
-import jakarta.persistence.*;
+package org.education.dto;
+
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.Getter;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Table(name = "teachers", schema = "tutoring")
-public class Teacher {
-    @Getter
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+@Getter
+public class TeacherDTO {
     private Long id;
 
-    @Getter
     @Setter
     private String firstName;
 
-    @Getter
     @Setter
     private String secondName;
 
-    @Getter
     @Setter
     private String email;
 }

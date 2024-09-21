@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список предметов</title>
+</head>
+<body>
+    <h1>Список предметов</h1>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Название предмета</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Здесь будет список предметов -->
+            <tr th:each="subject : ${subjects}">
+                <td th:text="${subject.id}"></td>
+                <td th:text="${subject.name}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="/">Вернуться на главную</a>
+</body>
+</html>

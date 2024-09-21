@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список учителей</title>
+</head>
+<body>
+    <h1>Список учителей</h1>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Имя учителя</th>
+                <th>Фамилия учителя</th>
+                <th>Email учителя</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Здесь будет список учителей -->
+            <tr th:each="teacher : ${teachers}">
+                <td th:text="${teacher.id}"></td>
+                <td th:text="${teacher.getFirstName}"></td>
+                <td th:text="${teacher.getSecondName}"></td>
+                <td th:text="${teacher.getEmail}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="/">Вернуться на главную</a>
+</body>
+</html>
