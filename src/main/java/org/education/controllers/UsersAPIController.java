@@ -16,11 +16,11 @@ import java.util.List;
 /* TODO
 Добавить Красивый ответ
 Решить проблему с ID (если находит учителя с занятым ID  - ошибка)
-*/
+
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/teachers")
-public class TeacherAPIController {
+public class UsersAPIController {
 
     private TeacherService teacherService;
     @PostMapping
@@ -29,4 +29,5 @@ public class TeacherAPIController {
         return new ResponseEntity<>(savedTeacher, HttpStatus.CREATED);
     }
 
-}
+
+}*/
