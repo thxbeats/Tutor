@@ -1,7 +1,10 @@
 package org.education.config;
 
+import org.education.service.CustomUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -18,7 +21,7 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    // Определяем пользователей с ролями
+    /* Определяем пользователей с ролями
     @Bean
     public UserDetailsService userDetailsService() {
         UserDetails admin = User
@@ -41,21 +44,38 @@ public class SecurityConfig {
 
         return new InMemoryUserDetailsManager(admin, teacher, student);
     }
-
+*/
     // Существующий метод конфигурации безопасности
    @Bean
 public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     http
-            .csrf(AbstractHttpConfigurer::disable) // Postman HotFix
+            .csrf(AbstractHttpConfigurer::disable)
             .authorizeHttpRequests(authorize -> authorize
                     .requestMatchers("/api/admin/**").hasRole("ADMIN")
-                    .requestMatchers("/api/teachers/**").hasAnyRole("TEACHER", "ADMIN")  // Только учитель и админ могут работать с учителями
-                    .requestMatchers("/api/student/**").hasAnyRole("STUDENT", "ADMIN")  // Только ученик имеет доступ
-                    .anyRequest().authenticated()  // Все остальные запросы требуют аутентификации
+                    .requestMatchers("/api/teachers/**").hasAnyRole("TEACHER", "ADMIN")
+                    .requestMatchers("/api/student/**").hasAnyRole("STUDENT", "ADMIN")
+                    .anyRequest().authenticated()
             )
             .formLogin(withDefaults())
-            .httpBasic(withDefaults());
+            .httpBasic(withDefaults())
+            .logout(withDefaults()
+            );
 
     return http.build();
 }
+
+private final CustomUserDetailsService customUserDetailsService;
+
+    public SecurityConfig(CustomUserDetailsService customUserDetailsService) {
+        this.customUserDetailsService = customUserDetailsService;
+
+    }
+
+    @Bean
+    public AuthenticationManager authManager(HttpSecurity http) throws Exception {
+        AuthenticationManagerBuilder authenticationManagerBuilder =
+            http.getSharedObject(AuthenticationManagerBuilder.class);
+        authenticationManagerBuilder.userDetailsService(customUserDetailsService);
+        return authenticationManagerBuilder.build();
+    }
 }
