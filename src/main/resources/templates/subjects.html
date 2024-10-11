@@ -1,29 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="${#locale}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Список предметов</title>
+    <title th:text="#{subjects.title}">Список предметов</title>
+    <link rel="stylesheet" href="styles-tables.css"> <!-- Подключаем новый файл стилей -->
 </head>
 <body>
-    <h1>Список предметов</h1>
+<div class="container">
+    <h1 th:text="#{subjects.title}">Список предметов</h1>
 
-    <table border="1">
+    <table class="styled-table">
         <thead>
-            <tr>
-                <th>ID</th>
-                <th>Название предмета</th>
-            </tr>
+        <tr>
+            <th th:text="#{subjects.header}">Название предмета</th>
+        </tr>
         </thead>
         <tbody>
-            <!-- Здесь будет список предметов -->
-            <tr th:each="subject : ${subjects}">
-                <td th:text="${subject.id}"></td>
-                <td th:text="${subject.name}"></td>
-            </tr>
+        <tr th:each="subject : ${subjects}">
+            <td th:text="${subject.name}"></td>
+        </tr>
         </tbody>
     </table>
 
-    <a href="/">Вернуться на главную</a>
+    <a th:href="@{'/?lang=' + ${#locale}}" class="btn" th:text="#{button.back}">Вернуться на главную</a>
+
+</div>
 </body>
 </html>

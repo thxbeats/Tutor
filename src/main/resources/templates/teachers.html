@@ -1,33 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="${#locale}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Список учителей</title>
+    <title th:text="#{teachers.title}">Список учителей</title>
+    <link rel="stylesheet" href="styles-tables.css"> <!-- Подключаем новый файл стилей -->
 </head>
 <body>
-    <h1>Список учителей</h1>
+<div class="container">
+    <h1 th:text="#{teachers.title}">Список учителей</h1>
 
-    <table border="1">
+    <table class="styled-table">
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Имя учителя</th>
-                <th>Фамилия учителя</th>
-                <th>Email учителя</th>
+                <th th:text="#{teachers.header.id}">ID</th>
+                <th th:text="#{teachers.header.firstName}">Имя учителя</th>
+                <th th:text="#{teachers.header.secondName}">Фамилия учителя</th>
+                <th th:text="#{teachers.header.email}">Email учителя</th>
             </tr>
         </thead>
         <tbody>
-            <!-- Здесь будет список учителей -->
-            <tr th:each="teacher : ${teachers}">
-                <td th:text="${teacher.id}"></td>
-                <td th:text="${teacher.getFirstName}"></td>
-                <td th:text="${teacher.getSecondName}"></td>
-                <td th:text="${teacher.getEmail}"></td>
-            </tr>
+        <tr th:each="teacher : ${teachers}">
+            <td th:text="${teacher.id}"></td>
+            <td th:text="${teacher.firstName}"></td>
+            <td th:text="${teacher.secondName}"></td>
+            <td th:text="${teacher.email}"></td>
+        </tr>
         </tbody>
     </table>
 
-    <a href="/">Вернуться на главную</a>
+    <a th:href="@{'/?lang=' + ${#locale}}" class="btn" th:text="#{button.back}">Вернуться на главную</a>
+
+</div>
 </body>
 </html>

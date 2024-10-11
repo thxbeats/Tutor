@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Welcome</title>
+    <title th:text="#{welcome.title}">Welcome</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Welcome to Our Tutoring Platform</h1>
+            <h1 th:text="#{welcome.header}">Добро пожаловать на платформу</h1>
             <nav>
                 <ul>
-                    <li><a href="/teachers">List of Teachers</a></li>
-                    <li><a href="/subjects">List of Subjects</a></li>
-                    <li><form action="#" th:action="@{/logout}" method="post">
-                            <button type="submit">Log Out</button>
+                    <li><a href="/teachers" th:text="#{nav.teachers}">Список учителей</a></li>
+                    <li><a href="/subjects" th:text="#{nav.subjects}">Список предметов</a></li>
+                    <li>
+                        <form action="#" th:action="@{/logout}" method="post">
+                            <button type="submit" class="btn btn-logout" th:text="#{nav.logout}">Выйти</button>
                         </form>
                     </li>
                 </ul>
@@ -21,12 +22,12 @@
         </header>
 
         <main>
-            <h2 th:text="'Message: ' + ${message}">Placeholder message</h2>
-            <p>Explore our platform to find the best tutors for your needs!</p>
+            <h2 align="center" th:text="'Message: ' + ${message}">Placeholder message</h2>
+            <p align="center" th:text="#{welcome.description}">Explore our platform to find the best tutors for your needs!</p>
         </main>
 
         <footer>
-            <p>&copy; 2024 Tutoring Platform. All rights reserved.</p>
+            <p th:text="#{footer.copy}">&copy; 2024 Tutoring Platform. All rights reserved.</p>
         </footer>
     </div>
 </body>

@@ -7,15 +7,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Locale;
+
 @Controller
 public class HomeController {
 
     @GetMapping("/")
-    public String hello(Model model) {
+    public String hello(Model model, Locale locale) {
         // Получаем текущего пользователя
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName(); // логин пользователя
-
+        System.out.println("Текущая локаль: " + locale);
         // Добавляем сообщение с логином
         model.addAttribute("message", "Welcome to the Platform, " + username);
         return "hello";

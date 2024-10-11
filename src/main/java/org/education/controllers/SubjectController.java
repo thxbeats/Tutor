@@ -22,7 +22,6 @@ public class SubjectController {
     @GetMapping("/subjects")
     public String getSubjects(Model model) {
     List<Subject> subjects = subjectRepository.findAll();
-    System.out.println("Subjects: " + subjects); // Лог для отладки
     model.addAttribute("subjects", subjects);
     return "subjects";
     }

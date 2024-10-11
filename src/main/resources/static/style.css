@@ -1,3 +1,4 @@
+/* Общие стили для страницы */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -6,45 +7,71 @@ body {
 }
 
 .container {
-    max-width: 800px;
-    margin: auto;
-    padding: 20px;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    margin: 0 auto;
 }
 
 header {
-    text-align: center;
-    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Центрирование элементов по высоте */
+    background-color: #4CAF50;
+    padding: 10px 20px;
+    color: white;
 }
 
+header h1 {
+    margin: 0;
+}
+
+/* Стили для навигации */
 nav ul {
     list-style: none;
+    margin: 0;
     padding: 0;
+    display: flex;
+    align-items: center; /* Центрирование ссылок по высоте */
+    gap: 10px;
 }
 
 nav ul li {
-    display: inline;
-    margin: 0 10px;
+    display: inline-block;
 }
 
-nav a {
+/* Стили для кнопок и ссылок */
+.btn, nav ul li a {
     text-decoration: none;
-    color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    background-color: #333;
+    border-radius: 5px;
+    border: 2px solid #333;
+    transition: background-color 0.3s, color 0.3s;
+    cursor: pointer;
+    display: inline-block; /* Важно для центровки кнопки */
 }
 
-nav a:hover {
-    text-decoration: underline;
+.btn:hover, nav ul li a:hover {
+    background-color: #555;
+    color: white;
+}
+
+/* Перемещаем кнопку "Log Out" в правый верхний угол */
+.logout {
+    margin-left: auto;
 }
 
 main {
-    margin: 20px 0;
+    padding: 20px 0;
 }
 
 footer {
     text-align: center;
+    margin-top: 20px;
     padding: 10px 0;
-    font-size: 14px;
-    color: #666;
+    background-color: #4CAF50;
+    color: white;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }

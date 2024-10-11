@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 public class DataInitializer {
 
     private final RoleRepository roleRepository;
-
+/*
     @PostConstruct
     public void initRoles() {
         if (roleRepository.findByName("ADMIN").isEmpty()) {
@@ -22,6 +22,6 @@ public class DataInitializer {
         }
         if (roleRepository.findByName("STUDENT").isEmpty()) {
             roleRepository.save(new Role(null, "STUDENT", null));
-        }
+        }}*/
     }
-}
+
