@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Результат отправки заявки</title>
+</head>
+<body>
+
+<h1>Заявка успешно отправлена!</h1>
+
+<p>Имя: <span th:text="${name}"></span></p>
+<p>Предмет: <span th:text="${subject}"></span></p>
+<p>Дата: <span th:text="${date}"></span></p>
+
+<a th:href="@{/lessonRequest}">Вернуться к форме</a>
+
+</body>
+</html>
