@@ -18,12 +18,14 @@ public class LessonRequest {
     private Long id;
     private String name;
     private String subject;
-    private String date;
+    private LocalDate date;
 
     public LessonRequest(String name, String subject, LocalDate date) {
+        this.name = name;
+        this.subject = subject;
+        this.date = date;
     }
 
     public LessonRequest() {
-
     }
 }

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class LessonRequestController {
@@ -63,9 +64,12 @@ public class LessonRequestController {
 
         // Если ошибок нет, сохраняем заявку в БД
         LessonRequest lessonRequest = new LessonRequest(name, subject, date);
+        System.out.println(lessonRequest); System.out.println(lessonRequest.getName());
         lessonRequestRepository.save(lessonRequest);
-
+        model.addAttribute("name", lessonRequest.getName());
+        model.addAttribute("date", lessonRequest.getDate());
+        model.addAttribute("subject", lessonRequest.getSubject());
         // После успешной обработки перенаправляем на страницу с результатом
-        return "redirect:/lessonRequest/success"; // Переход на страницу с результатом
+        return "result"; // Переход на страницу с результатом
     }
 }

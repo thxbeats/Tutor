@@ -19,12 +19,13 @@ public class HomeController {
         String username = authentication.getName(); // логин пользователя
         System.out.println("Текущая локаль: " + locale);
         // Добавляем сообщение с логином
-        model.addAttribute("message", "Welcome to the Platform, " + username);
+        {model.addAttribute("message", "Welcome to the Platform, " + username);}
+
         return "hello";
     }
 
     @GetMapping("/welcome")
-    public String welcomePage(@RequestParam(name = "msg", required = false, defaultValue = "Welcome to the hahaha") String msg, Model model) {
+    public String welcomePage(@RequestParam(name = "msg", required = false, defaultValue = "Welcome to the Turoring Platform") String msg, Model model) {
         model.addAttribute("message", msg);
         return "hello";
     }
