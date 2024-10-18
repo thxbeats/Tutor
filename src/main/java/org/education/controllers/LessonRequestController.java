@@ -41,7 +41,8 @@ public class LessonRequestController {
                                 @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date,
                                 Model model) {
         List<String> errors = new ArrayList<>();
-
+List<LessonRequest> requests = lessonRequestRepository.findAll(); // Получаем все заявки
+        model.addAttribute("requests", requests);
         // Проверяем, существует ли предмет в базе данных
         Subject existingSubject = subjectRepository.findByName(subject);
         if (existingSubject == null) {

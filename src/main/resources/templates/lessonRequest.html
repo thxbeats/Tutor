@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Заявка на урок</title>
+  <link rel="stylesheet" href="styles-tables.css">
 </head>
 <body>
 
@@ -18,20 +19,48 @@
 </div>
 
 <form action="#" th:action="@{/submitRequest}" method="post">
-  <label for="name">Имя:</label>
-  <input type="text" id="name" name="name" required minlength="2">
+  <div class="form-container">
+  <div class="form-group">
+    <label for="name">Имя:</label>
+    <input type="text" id="name" name="name" required minlength="2">
+  </div>
 
-  <label for="subject">Предмет:</label>
-  <input type="text" id="subject" name="subject" required>
+  <div class="form-group">
+    <label for="subject">Предмет:</label>
+    <input type="text" id="subject" name="subject" required>
+  </div>
 
-  <label for="date">Дата:</label>
-  <input type="date" id="date" name="date" required>
+  <div class="form-group">
+    <label for="date">Дата:</label>
+    <input type="date" id="date" name="date" required>
+  </div>
 
-  <button type="submit">Отправить заявку</button>
+  <button class="btn" type="submit">Отправить заявку</button>
+  </div>
 </form>
 
-<h2>Созданные заявки</h2>
+<h1>Созданные заявки</h1>
 
+
+<table class="styled-table">
+        <thead>
+        <tr>
+            <th>Имя</th>
+    <th>Предмет</th>
+    <th>Дата</th></tr>
+
+        </thead>
+        <tbody>
+        <tr th:each="request : ${requests}">
+    <td th:text="${request.name}"></td>
+    <td th:text="${request.subject}"></td>
+    <td th:text="${request.date}"></td>
+  </tr>
+
+        </tbody>
+    </table>
+
+<!--
 <table>
   <thead>
   <tr>
@@ -48,6 +77,6 @@
   </tr>
   </tbody>
 </table>
-
+-->
 </body>
 </html>
