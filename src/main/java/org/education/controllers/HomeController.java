@@ -1,5 +1,6 @@
 package org.education.controllers;
 
+
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -24,7 +25,7 @@ public class HomeController {
     }
 
     @GetMapping("/welcome")
-    public String welcomePage(@RequestParam(name = "msg", required = false, defaultValue = "Welcome to the hahaha") String msg, Model model) {
+    public String welcomePage(@RequestParam(name = "msg", required = false, defaultValue = "Welcome to the Turoring Platform") String msg, Model model) {
         model.addAttribute("message", msg);
         return "hello";
     }

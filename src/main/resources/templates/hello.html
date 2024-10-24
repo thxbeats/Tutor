@@ -12,6 +12,7 @@
                 <ul>
                     <li><a href="/teachers" th:text="#{nav.teachers}">Список учителей</a></li>
                     <li><a href="/subjects" th:text="#{nav.subjects}">Список предметов</a></li>
+                    <li><a href="/lessonRequest" th:text="#{nav.lessonRequest}">Оставить заявку</a></li>
                     <li>
                         <form action="#" th:action="@{/logout}" method="post">
                             <button type="submit" class="btn btn-logout" th:text="#{nav.logout}">Выйти</button>
@@ -22,7 +23,7 @@
         </header>
 
         <main>
-            <h2 align="center" th:text="'Message: ' + ${message}">Placeholder message</h2>
+            <h2 align="center" th:text="#{welcome.message}">Placeholder message</h2>
             <p align="center" th:text="#{welcome.description}">Explore our platform to find the best tutors for your needs!</p>
         </main>
 

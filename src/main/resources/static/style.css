@@ -38,8 +38,9 @@ nav ul li {
     display: inline-block;
 }
 
-/* Стили для кнопок и ссылок */
-.btn, nav ul li a {
+/* Общие стили для ссылок и кнопки выхода */
+nav ul li a,
+form .btn.btn-logout {
     text-decoration: none;
     color: white;
     padding: 10px 20px;
@@ -51,7 +52,8 @@ nav ul li {
     display: inline-block; /* Важно для центровки кнопки */
 }
 
-.btn:hover, nav ul li a:hover {
+nav ul li a:hover,
+form .btn.btn-logout:hover {
     background-color: #555;
     color: white;
 }
