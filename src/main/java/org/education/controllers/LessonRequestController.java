@@ -1,5 +1,6 @@
 package org.education.controllers;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.education.model.LessonRequest;
 import org.education.model.Subject;
 import org.education.repository.LessonRequestRepository;
@@ -8,14 +9,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class LessonRequestController {
@@ -28,10 +31,34 @@ public class LessonRequestController {
 
     // Отображение формы и списка заявок
     @GetMapping("/lessonRequest")
-    public String showForm(Model model) {
+    public String showForm(Model model, HttpServletRequest request) {
+        // Получаем куки
+        String savedName = null;
+        String savedSubject = null;
+        String savedDate = null;
+
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("name")) {
+                    savedName = cookie.getValue();
+                } else if (cookie.getName().equals("subject")) {
+                    savedSubject = cookie.getValue();
+                } else if (cookie.getName().equals("date")) {
+                    savedDate = cookie.getValue();
+                }
+            }
+        }
+
+        // Добавляем значения из куки в модель
+        model.addAttribute("savedName", savedName);
+        model.addAttribute("savedSubject", savedSubject);
+        model.addAttribute("savedDate", savedDate);
+
         List<LessonRequest> requests = lessonRequestRepository.findAll(); // Получаем все заявки
         model.addAttribute("requests", requests); // Передаем заявки в модель для отображения в таблице
-        return "lessonRequest"; // Имя HTML страницы с формой и таблицей
+
+        return "lessonRequest";
     }
 
     // Обработка отправленной заявки
@@ -39,10 +66,13 @@ public class LessonRequestController {
     public String submitRequest(@RequestParam String name,
                                 @RequestParam String subject,
                                 @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date,
+                                HttpServletResponse response,
                                 Model model) {
+
         List<String> errors = new ArrayList<>();
-List<LessonRequest> requests = lessonRequestRepository.findAll(); // Получаем все заявки
+        List<LessonRequest> requests = lessonRequestRepository.findAll(); // Получаем все заявки
         model.addAttribute("requests", requests);
+
         // Проверяем, существует ли предмет в базе данных
         Subject existingSubject = subjectRepository.findByName(subject);
         if (existingSubject == null) {
@@ -63,14 +93,31 @@ List<LessonRequest> requests = lessonRequestRepository.findAll(); // Получ�
             return "lessonRequest"; // Возвращаемся на страницу с формой и отображаем ошибки
         }
 
-        // Если ошибок нет, сохраняем заявку в БД
+        // Сохраняем данные формы в куки
+        Cookie nameCookie = new Cookie("name", name);
+        Cookie subjectCookie = new Cookie("subject", subject);
+        Cookie dateCookie = new Cookie("date", date.toString());
+
+        // Устанавливаем срок жизни куки (например, 7 дней)
+        int maxAge = 7 * 24 * 60 * 60;
+        nameCookie.setMaxAge(maxAge);
+        subjectCookie.setMaxAge(maxAge);
+        dateCookie.setMaxAge(maxAge);
+
+        // Добавляем куки в ответ
+        response.addCookie(nameCookie);
+        response.addCookie(subjectCookie);
+        response.addCookie(dateCookie);
+
+        // Сохраняем заявку в БД
         LessonRequest lessonRequest = new LessonRequest(name, subject, date);
-        System.out.println(lessonRequest); System.out.println(lessonRequest.getName());
         lessonRequestRepository.save(lessonRequest);
+
+        // После успешной обработки перенаправляем на страницу с результатом
         model.addAttribute("name", lessonRequest.getName());
         model.addAttribute("date", lessonRequest.getDate());
         model.addAttribute("subject", lessonRequest.getSubject());
-        // После успешной обработки перенаправляем на страницу с результатом
+
         return "result"; // Переход на страницу с результатом
     }
 }

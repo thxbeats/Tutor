@@ -1,82 +1,82 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>Заявка на урок</title>
-  <link rel="stylesheet" href="styles-tables.css">
+    <meta charset="UTF-8">
+    <title>Заявка на урок</title>
+    <link rel="stylesheet" href="styles-tables.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<header>
+    <h1 th:text="#{welcome.header}">Добро пожаловать на платформу</h1>
+    <nav>
+        <ul>
+            <li><a href="/teachers" th:text="#{nav.teachers}">Список учителей</a></li>
+            <li><a href="/subjects" th:text="#{nav.subjects}">Список предметов</a></li>
+            <li><a href="/lessonRequest" th:text="#{nav.lessonRequest}">Оставить заявку</a></li>
+            <li>
+                <form action="#" th:action="@{/logout}" method="post">
+                    <button type="submit" class="btn btn-logout" th:text="#{nav.logout}">Выйти</button>
+                </form>
+            </li>
+        </ul>
+    </nav>
+</header>
 
 <h1>Заявка на урок</h1>
 
-<!-- Блок для отображения ошибок -->
 <div id="errorMessages">
-  <ul>
-    <th:block th:if="${errors}">
-      <li th:each="error : ${errors}" th:text="${error}"></li>
-    </th:block>
-  </ul>
+    <ul>
+        <th:block th:if="${errors}">
+            <li th:each="error : ${errors}" th:text="${error}"></li>
+        </th:block>
+    </ul>
 </div>
 
 <form action="#" th:action="@{/submitRequest}" method="post">
-  <div class="form-container">
-  <div class="form-group">
-    <label for="name">Имя:</label>
-    <input type="text" id="name" name="name" required minlength="2">
-  </div>
+    <div class="form-container">
+        <div class="form-group">
+            <label for="name">Имя:</label>
+            <!-- Предзаполнение поля значением из cookie -->
+            <input type="text" id="name" name="name" th:value="${savedName}" required minlength="2">
 
-  <div class="form-group">
-    <label for="subject">Предмет:</label>
-    <input type="text" id="subject" name="subject" required>
-  </div>
 
-  <div class="form-group">
-    <label for="date">Дата:</label>
-    <input type="date" id="date" name="date" required>
-  </div>
+        </div>
 
-  <button class="btn" type="submit">Отправить заявку</button>
-  </div>
+        <div class="form-group">
+            <label for="subject">Предмет:</label>
+            <!-- Предзаполнение поля значением из cookie -->
+            <input type="text" id="subject" name="subject" th:value="${savedSubject}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="date">Дата:</label>
+            <!-- Предзаполнение поля значением из cookie -->
+            <input type="date" id="date" name="date" th:value="${savedDate}" required>
+        </div>
+
+        <button class="btn" type="submit">Отправить заявку</button>
+    </div>
 </form>
 
 <h1>Созданные заявки</h1>
 
-
 <table class="styled-table">
-        <thead>
-        <tr>
-            <th>Имя</th>
-    <th>Предмет</th>
-    <th>Дата</th></tr>
-
-        </thead>
-        <tbody>
-        <tr th:each="request : ${requests}">
-    <td th:text="${request.name}"></td>
-    <td th:text="${request.subject}"></td>
-    <td th:text="${request.date}"></td>
-  </tr>
-
-        </tbody>
-    </table>
-
-<!--
-<table>
-  <thead>
-  <tr>
-    <th>Имя</th>
-    <th>Предмет</th>
-    <th>Дата</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr th:each="request : ${requests}">
-    <td th:text="${request.name}"></td>
-    <td th:text="${request.subject}"></td>
-    <td th:text="${request.date}"></td>
-  </tr>
-  </tbody>
+    <thead>
+    <tr>
+        <th>Имя</th>
+        <th>Предмет</th>
+        <th>Дата</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="request : ${requests}">
+        <td th:text="${request.name}"></td>
+        <td th:text="${request.subject}"></td>
+        <td th:text="${request.date}"></td>
+    </tr>
+    </tbody>
 </table>
--->
+
 </body>
 </html>

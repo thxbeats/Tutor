@@ -1,5 +1,6 @@
 package org.education.controllers;
 
+
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -19,8 +20,7 @@ public class HomeController {
         String username = authentication.getName(); // логин пользователя
         System.out.println("Текущая локаль: " + locale);
         // Добавляем сообщение с логином
-        {model.addAttribute("message", "Welcome to the Platform, " + username);}
-
+        model.addAttribute("message", "Welcome to the Platform, " + username);
         return "hello";
     }
 
