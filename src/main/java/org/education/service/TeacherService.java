@@ -5,4 +5,6 @@ import org.education.model.Teacher;
 
 public interface TeacherService {
     TeacherDTO createTeacher(TeacherDTO teacherDTO);
+
+
 }
