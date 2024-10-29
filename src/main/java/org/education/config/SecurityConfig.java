@@ -13,11 +13,6 @@ import org.springframework.security.web.SecurityFilterChain;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
-
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -47,27 +42,27 @@ public class SecurityConfig {
     }
 */
     // Существующий метод конфигурации безопасности
-   @Bean
-public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-    http
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http
+                .csrf(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers("/api/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/api/teachers/getTeachers").permitAll()
+                        // .requestMatchers("/api/teachers/**").hasAnyRole("TEACHER", "ADMIN")
+                        .requestMatchers("/api/teachers/**").permitAll()
+                        .requestMatchers("/api/student/**").hasAnyRole("STUDENT", "ADMIN")
+                        .anyRequest().authenticated()
+                )
+                .formLogin(withDefaults())
+                .httpBasic(withDefaults())
+                .logout(withDefaults()
+                );
 
-            .csrf(AbstractHttpConfigurer::disable)
-            .authorizeHttpRequests(authorize -> authorize
-                    .requestMatchers("/api/admin/**").hasRole("ADMIN")
-                    .requestMatchers("/api/teachers/getTeachers").permitAll()
-                    .requestMatchers("/api/teachers/**").hasAnyRole("TEACHER", "ADMIN")
-                    .requestMatchers("/api/student/**").hasAnyRole("STUDENT", "ADMIN")
-                    .anyRequest().authenticated()
-            )
-            .formLogin(withDefaults())
-            .httpBasic(withDefaults())
-            .logout(withDefaults()
-            );
+        return http.build();
+    }
 
-    return http.build();
-}
-
-private final CustomUserDetailsService customUserDetailsService;
+    private final CustomUserDetailsService customUserDetailsService;
 
     public SecurityConfig(CustomUserDetailsService customUserDetailsService) {
         this.customUserDetailsService = customUserDetailsService;
@@ -77,7 +72,7 @@ private final CustomUserDetailsService customUserDetailsService;
     @Bean
     public AuthenticationManager authManager(HttpSecurity http) throws Exception {
         AuthenticationManagerBuilder authenticationManagerBuilder =
-            http.getSharedObject(AuthenticationManagerBuilder.class);
+                http.getSharedObject(AuthenticationManagerBuilder.class);
         authenticationManagerBuilder.userDetailsService(customUserDetailsService);
         return authenticationManagerBuilder.build();
     }

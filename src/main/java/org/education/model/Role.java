@@ -23,4 +23,11 @@ public class Role {
     @JsonIgnore
     @ManyToMany(mappedBy = "roles")
     private Set<User> users;
+
+    // Добавим метод для удобного отображения имени роли
+    @Override
+    public String toString() {
+        return name;
+    }
+
 }

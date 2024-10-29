@@ -32,9 +32,15 @@ public class TeacherAPIController {
         TeacherDTO savedTeacher = teacherService.createTeacher(teacherDTO);
         return new ResponseEntity<>(savedTeacher, HttpStatus.CREATED);
     }
-/*
+
+    @PostMapping
+    @RequestMapping("/create")
+    public ResponseEntity<String> testPost(){
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
     @GetMapping("/getTeachers")
     public List<Teacher> getTeachers() {
         return teacherService.getAllTeachers();
-    }*/
+    }
 }

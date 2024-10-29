@@ -1,32 +1,29 @@
+// components/TeacherList.js
 import React, { useEffect, useState } from 'react';
+import TeacherCard from './TeacherCard';
 
 const TeacherList = () => {
     const [teachers, setTeachers] = useState([]);
+    const colors = ["#FF6F61", "#6B5B95", "#88B04B", "#FFA07A", "#20B2AA"]; // Массив цветов
 
-    // Функция для получения списка учителей с сервера
     useEffect(() => {
         fetch('/api/teachers/getTeachers')
             .then((response) => response.json())
-            .then((data) => {
-                console.log('Received data:', data); // Отладочный вывод
-                setTeachers(data); // Обновление состояния с данными учителей
-            })
+            .then((data) => setTeachers(data))
             .catch((error) => console.error('Error fetching teachers:', error));
     }, []);
 
-
     return (
-        <div>
-            <h1>Teacher List</h1>
-            <ul>
-                {teachers.map((teacher) => (
-                    <li key={teacher.id}>
-                        <h2>{`${teacher.firstName} ${teacher.secondName}`}</h2>
-                        <p>Email: {teacher.email}</p>
-                    </li>
-
-                ))}
-            </ul>
+        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
+            {teachers.map((teacher, index) => (
+                <TeacherCard
+                    key={index}
+                    firstName={teacher.firstName}
+                    lastName={teacher.lastName}
+                    email={teacher.email}
+                    color={colors[index % colors.length]} // Чередуем цвета по индексу
+                />
+            ))}
         </div>
     );
 };
