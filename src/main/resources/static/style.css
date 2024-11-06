@@ -14,8 +14,8 @@ body {
 header {
     display: flex;
     justify-content: space-between;
-    align-items: center; /* Центрирование элементов по высоте */
-    background-color: #4CAF50;
+    align-items: center;
+    background-color: #009579;
     padding: 10px 20px;
     color: white;
 }
@@ -30,7 +30,6 @@ nav ul {
     margin: 0;
     padding: 0;
     display: flex;
-    align-items: center; /* Центрирование ссылок по высоте */
     gap: 10px;
 }
 
@@ -38,9 +37,8 @@ nav ul li {
     display: inline-block;
 }
 
-/* Общие стили для ссылок и кнопки выхода */
-nav ul li a,
-form .btn.btn-logout {
+/* Стили для кнопок навигации */
+.nav-btn {
     text-decoration: none;
     color: white;
     padding: 10px 20px;
@@ -49,16 +47,14 @@ form .btn.btn-logout {
     border: 2px solid #333;
     transition: background-color 0.3s, color 0.3s;
     cursor: pointer;
-    display: inline-block; /* Важно для центровки кнопки */
+    display: inline-block;
 }
 
-nav ul li a:hover,
-form .btn.btn-logout:hover {
+.nav-btn:hover {
     background-color: #555;
-    color: white;
 }
 
-/* Перемещаем кнопку "Log Out" в правый верхний угол */
+/* Перемещаем кнопку "Log Out" вправо */
 .logout {
     margin-left: auto;
 }
@@ -71,7 +67,7 @@ footer {
     text-align: center;
     margin-top: 20px;
     padding: 10px 0;
-    background-color: #4CAF50;
+    background-color: #009579;
     color: white;
     position: absolute;
     bottom: 0;

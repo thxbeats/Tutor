@@ -5,31 +5,33 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1 th:text="#{welcome.header}">Добро пожаловать на платформу</h1>
-            <nav>
-                <ul>
-                    <li><a href="/teachers" th:text="#{nav.teachers}">Список учителей</a></li>
-                    <li><a href="/subjects" th:text="#{nav.subjects}">Список предметов</a></li>
-                    <li><a href="/lessonRequest" th:text="#{nav.lessonRequest}">Оставить заявку</a></li>
-                    <li>
-                        <form action="#" th:action="@{/logout}" method="post">
-                            <button type="submit" class="btn btn-logout" th:text="#{nav.logout}">Выйти</button>
-                        </form>
-                    </li>
-                </ul>
-            </nav>
-        </header>
+<div class="container">
+    <!--header>
+        <h1></h1>
+        <nav>
+            <ul>
+                <li><a href="/teachers" th:text="#{nav.teachers}" class="nav-btn">Список учителей</a></li>
+                <li><a href="/subjects" th:text="#{nav.subjects}" class="nav-btn">Список предметов</a></li>
+                <li><a href="/lessonRequest" th:text="#{nav.lessonRequest}" class="nav-btn">Оставить заявку</a></li>
+                <li>
+                    <form th:action="@{/logout}" method="post" style="display: inline;">
+                        <button type="submit" class="nav-btn" th:text="#{nav.logout}">Выйти</button>
+                    </form>
+                </li>
+            </ul>
+        </nav>
+    </header-->
+    <th:block th:replace="~{header}"></th:block>
 
-        <main>
-            <h2 align="center" th:text="#{welcome.message}">Placeholder message</h2>
-            <p align="center" th:text="#{welcome.description}">Explore our platform to find the best tutors for your needs!</p>
-        </main>
+    <main>
+        <h2 align="center" th:text="#{welcome.message}">Placeholder message</h2>
+        <p align="center" th:text="#{welcome.description}">Explore our platform to find the best tutors for your needs!</p>
 
-        <footer>
-            <p th:text="#{footer.copy}">&copy; 2024 Tutoring Platform. All rights reserved.</p>
-        </footer>
-    </div>
+    </main>
+
+    <footer>
+        <p th:text="#{footer.copy}">&copy; 2024 Tutoring Platform. All rights reserved.</p>
+    </footer>
+</div>
 </body>
 </html>

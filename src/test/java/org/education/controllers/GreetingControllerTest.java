@@ -56,7 +56,7 @@ public class GreetingControllerTest {
                 .content(inputBody) // Тело запроса
                 .contentType(MediaType.TEXT_PLAIN)) // Указываем, что отправляем текст
                 .andExpect(status().isOk()) // Ожидаем статус 200 OK
-                /*.andExpect(content().string(expectedResponse))*/; // Проверяем содержимое ответа
+                .andExpect(content().string(expectedResponse)); // Проверяем содержимое ответа
     }
 
 

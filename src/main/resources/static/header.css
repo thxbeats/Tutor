@@ -1,0 +1,184 @@
+/* Стилизация контейнера и кнопок */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 10px 20px;
+    color: white;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    transition: all 0.3s;
+}
+
+.nav-links a:hover {
+    color: #ff8c00;
+}
+
+.auth-buttons a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 8px 15px;
+    background-color: #ff8c00;
+    border-radius: 5px;
+    margin-left: 15px;
+    transition: background-color 0.3s;
+}
+
+.auth-buttons a:hover {
+    background-color: #cc7000;
+}
+
+/* Убираем кнопки в зависимости от роли */
+.auth-buttons a {
+    display: block;
+}
+
+.auth-buttons a:first-child {
+    display: inline-block;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.switch > span {
+  position: absolute;
+  top: 14px;
+  pointer-events: none;
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-weight: bold;
+  font-size: 12px;
+  text-transform: uppercase;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, .06);
+  width: 50%;
+  text-align: center;
+}
+
+input.check-toggle-round-flat:checked ~ .off {
+  color: #F36F25;
+}
+
+input.check-toggle-round-flat:checked ~ .on {
+  color: #fff;
+}
+.switch {
+  position: relative;
+  display: inline-block;
+  margin: 0 5px;
+  width: 70px; /* Уменьшаем ширину свитча */
+  height: 30px; /* Уменьшаем высоту */
+}
+.switch {
+  position: relative;
+  display: inline-block;
+  margin: 0 5px;
+  width: 70px; /* Ширина свитча */
+  height: 30px; /* Высота свитча */
+}
+
+.switch > span {
+  position: absolute;
+  top: 50%; /* Выравнивание по центру по вертикали */
+  left: 50%;
+  transform: translate(-0%, -50%); /* Центрируем текст по оси X и Y */
+  pointer-events: none;
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-weight: bold;
+  font-size: 10px; /* Уменьшенный размер текста */
+  text-transform: uppercase;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, .06);
+  width: 50%;
+  text-align: center;
+}
+
+input.check-toggle-round-flat:checked ~ .off {
+  color: #F36F25; /* Цвет для выключенного состояния */
+}
+
+input.check-toggle-round-flat:checked ~ .on {
+  color: #fff;
+}
+
+.switch > span.on {
+  left: 0;
+  padding-left: 2px;
+  color: #fff; /* Белый цвет для включенного состояния */
+}
+
+.switch > span.off {
+  right: 0;
+  padding-right: 4px;
+  color: #fff; /* Белый цвет для выключенного состояния */
+}
+
+.check-toggle {
+  position: absolute;
+  margin-left: -9999px;
+  visibility: hidden;
+}
+
+.check-toggle + label {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+  width: 70px; /* Ширина свитча */
+  height: 30px; /* Высота свитча */
+  background-color: #009579; /* Основной цвет фона */
+  border-radius: 30px; /* Радиус скругления */
+}
+
+input.check-toggle-round-flat + label:before,
+input.check-toggle-round-flat + label:after {
+  display: block;
+  position: absolute;
+  content: "";
+}
+
+input.check-toggle-round-flat + label:before {
+  top: 2px;
+  left: 2px;
+  bottom: 2px;
+  right: 2px;
+  background-color: #009579; /* Цвет фона для выключенного состояния */
+  border-radius: 30px; /* Радиус скругления */
+}
+
+input.check-toggle-round-flat + label:after {
+  top: 4px;
+  left: 4px;
+  bottom: 4px;
+  width: 22px; /* Размер переключателя */
+  background-color: #fff; /* Белый цвет для переключателя */
+  border-radius: 50%; /* Скругленный переключатель */
+  transition: margin 0.2s; /* Плавное перемещение */
+}
+
+input.check-toggle-round-flat:checked + label:after {
+  margin-left: 38px; /* Положение переключателя при активном состоянии */
+}
+
+input.check-toggle-round-flat:checked + label {
+  background-color: #007c63; /* Цвет фона в активном состоянии */
+}

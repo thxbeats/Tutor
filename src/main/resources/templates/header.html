@@ -1,0 +1,31 @@
+<header>
+       <link rel="stylesheet" href="header.css">
+
+    <div class="nav-container">
+        <div class="nav-links">
+            <a th:href="@{/teachers}" th:text="#{teachers}">Teachers</a>
+            <a th:href="@{/subjects}" th:text="#{subjects}">Subjects</a>
+            <a th:href="@{/lessonRequest}" th:text="#{lessonRequest}">Lesson Request</a>
+        </div>
+
+	<!--div class="switch">
+	    <input id="language-toggle" class="check-toggle check-toggle-round-flat" type="checkbox">
+	    <label for="language-toggle"></label>
+	    <span class="on">RU</span>
+	    <span class="off">EN</span>
+  	</div-->
+
+
+        <div class="auth-buttons">
+            <!-- Кнопка входа / выхода в зависимости от того, аутентифицирован ли пользователь -->
+            <div th:if="${#authentication != null}">
+                <a th:href="@{/logout}" th:text="#{logout}">Logout</a> <!-- Выход -->
+            </div>
+            <div th:if="${#authentication == null }">
+                <a th:href="@{/login}" th:text="#{login}">Login</a> <!-- Вход -->
+            </div>
+
+
+        </div>
+    </div>
+</header>

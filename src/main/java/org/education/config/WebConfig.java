@@ -26,7 +26,8 @@ public class WebConfig implements WebMvcConfigurer {
     @Bean
     public LocaleResolver localeResolver() {
         CookieLocaleResolver clr = new CookieLocaleResolver();
-        clr.setDefaultLocale(Locale.ENGLISH); // Локаль по умолчанию — английская
+        Locale russianLocale = new Locale("ru", "RU");
+        clr.setDefaultLocale(russianLocale); // Локаль по умолчанию — английская
         clr.setCookieName("langCookie"); // Имя куки, где будет храниться язык
         clr.setCookieMaxAge(3600 * 24 * 30); // Куки будет жить 30 дней
         return clr;

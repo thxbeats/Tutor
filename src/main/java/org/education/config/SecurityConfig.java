@@ -47,14 +47,21 @@ public class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorize -> authorize
+
                         .requestMatchers("/api/admin/**").hasRole("ADMIN")
                         .requestMatchers("/api/teachers/getTeachers").permitAll()
                         // .requestMatchers("/api/teachers/**").hasAnyRole("TEACHER", "ADMIN")
                         .requestMatchers("/api/teachers/**").permitAll()
                         .requestMatchers("/api/student/**").hasAnyRole("STUDENT", "ADMIN")
+                        .requestMatchers("/css/**", "/js/**", "/images/**", "/auth.css").permitAll()
+                        .requestMatchers("/login", "/login?lang=ru", "/login?lang=en").permitAll()
                         .anyRequest().authenticated()
                 )
-                .formLogin(withDefaults())
+                .formLogin(form -> form
+                        .loginPage("/login")
+                        .permitAll()
+                        .defaultSuccessUrl("/", true)
+                        )
                 .httpBasic(withDefaults())
                 .logout(withDefaults()
                 );
