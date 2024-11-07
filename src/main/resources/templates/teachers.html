@@ -7,9 +7,12 @@
     <link rel="stylesheet" href="styles-tables.css"> <!-- Подключаем новый файл стилей -->
 </head>
 <body>
+
+
+<div><th:block th:replace="~{header}"></th:block></div>
 <div class="container">
     <h1 th:text="#{teachers.title}">Список учителей</h1>
-    <th:block th:replace="~{header}"></th:block>
+
 
     <table class="styled-table">
         <thead>

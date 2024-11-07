@@ -2,6 +2,9 @@
 import React from 'react';
 import TeacherList from './components/TeacherList';
 import './App.css';
+import Footer from "./components/Footer";
+import Header from "./components/Header";
+import Home from "./components/Home";
 
 
 function App() {
@@ -9,12 +12,18 @@ function App() {
 
     return (
         <div className="App">
-            <header className="app-header">
-                <h1>Список учителей</h1>
-            </header>
-            <TeacherList />
+
+
+
+
+
+        <div className="App">
+            <Header />
+            <Home />
+            <Footer />
+
         </div>
-    );
+        </div>)
 }
 
-export default App;
+export default App

@@ -5,11 +5,10 @@
     <title>Заявка на урок</title>
     <link rel="stylesheet" href="styles-tables.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" th:href="@{header.css}">
 </head>
 <body>
     <th:block th:replace="~{header}"></th:block>
-
-
 <h1>Заявка на урок</h1>
 
 <div id="errorMessages">
@@ -45,7 +44,7 @@
         <button class="btn" type="submit">Отправить заявку</button>
     </div>
 </form>
-
+    <div class="container">
 <h1>Созданные заявки</h1>
 
 <table class="styled-table">
@@ -64,6 +63,6 @@
     </tr>
     </tbody>
 </table>
-
+</div>
 </body>
 </html>

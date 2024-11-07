@@ -15,3 +15,26 @@
     font-size: 2em;
     font-weight: bold;
 }
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header, footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1em;
+}
+
+nav a {
+    color: white;
+    margin: 0 1em;
+    text-decoration: none;
+}
+
+main {
+    padding: 2em;
+    text-align: center;
+}

@@ -1,11 +1,11 @@
 <header>
-       <link rel="stylesheet" href="header.css">
+       <link rel="stylesheet" th:href="@{/header.css}">
 
     <div class="nav-container">
         <div class="nav-links">
-            <a th:href="@{/teachers}" th:text="#{teachers}">Teachers</a>
-            <a th:href="@{/subjects}" th:text="#{subjects}">Subjects</a>
-            <a th:href="@{/lessonRequest}" th:text="#{lessonRequest}">Lesson Request</a>
+            <a th:href="@{/teachers}" th:text="#{header.teachers}">Teachers</a>
+            <a th:href="@{/subjects}" th:text="#{header.subjects}">Subjects</a>
+            <a th:href="@{/lessonRequest}" th:text="#{header.lessonRequest}">Lesson Request</a>
         </div>
 
 	<!--div class="switch">
@@ -19,10 +19,10 @@
         <div class="auth-buttons">
             <!-- Кнопка входа / выхода в зависимости от того, аутентифицирован ли пользователь -->
             <div th:if="${#authentication != null}">
-                <a th:href="@{/logout}" th:text="#{logout}">Logout</a> <!-- Выход -->
+                <a th:href="@{/logout}" th:text="#{header.logout}">Logout</a> <!-- Выход -->
             </div>
             <div th:if="${#authentication == null }">
-                <a th:href="@{/login}" th:text="#{login}">Login</a> <!-- Вход -->
+                <a th:href="@{/login}" th:text="#{header.login}">Login</a> <!-- Вход -->
             </div>
 
 

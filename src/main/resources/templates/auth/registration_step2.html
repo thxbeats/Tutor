@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title th:text="#{title}">Login & Registration Form</title>
+    <link rel="stylesheet" th:href="@{/auth.css}">
+</head>
+<body>
+<div class="container">
+
+    <div class="registration form">
+        <header th:text="#{signup}">Signup</header>
+        <form action="/register" method="post">
+            <input type="text" placeholder="" th:placeholder="#{enterEmail}">
+            <input type="password" placeholder="" th:placeholder="#{createPassword}">
+            <input type="password" placeholder="" th:placeholder="#{confirmPassword}">
+            <input type="submit" class="button" th:value="#{signupButton}">
+        </form>
+    </div>
+</div>
+</body>
+</html>

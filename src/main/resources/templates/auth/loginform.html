@@ -11,7 +11,7 @@
 <div class="container">
     <input type="checkbox" id="check">
     <div class="login form">
-        <header th:text="#{login}">Login</header>
+        <header th:text="#{header.login}">Login</header>
         <form action="/login" method="post">
             <input type="text" name = "username" placeholder="" th:placeholder="#{enterEmail}">
             <input type="password" name="password" placeholder="" th:placeholder="#{enterPassword}">
@@ -34,7 +34,7 @@
         </form>
         <div class="signup">
             <span class="signup" th:text="#{alreadyHaveAccount}">Already have an account?</span>
-            <label for="check" th:text="#{login}">Login</label>
+            <label for="check" th:text="#{header.login}">Login</label>
         </div>
     </div>
 </div>

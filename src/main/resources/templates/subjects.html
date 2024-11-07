@@ -2,13 +2,16 @@
 <html lang="${#locale}">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{header.css}">
+
     <title th:text="#{subjects.title}">Список предметов</title>
-    <link rel="stylesheet" href="styles-tables.css"> <!-- Подключаем новый файл стилей -->
+    <link rel="stylesheet" href="styles-tables.css">
+
 </head>
 <body>
+<div><th:block th:replace="~{header}"></th:block></div>
 <div class="container">
-    <th:block th:replace="~{header}"></th:block>
+
 
     <h1 th:text="#{subjects.title}">Список предметов</h1>
 

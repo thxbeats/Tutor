@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title th:text="#{welcome.title}">Welcome</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" th:href="@{style.css}">
 </head>
 <body>
 <div class="container">

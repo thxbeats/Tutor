@@ -31,6 +31,9 @@ module.exports = {
         }),
     ],
     devServer: {
+        static: {
+            directory: path.join(__dirname, 'public'), // Убедитесь, что путь указан правильно
+        },
         proxy: {
             '/api': {
                 target: 'https://localhost:8443', // HTTPS
