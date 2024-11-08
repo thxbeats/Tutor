@@ -4,19 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title th:text="#{title}">Login & Registration Form</title>
+    <title th:text="#{register.title}">Registration Form</title>
     <link rel="stylesheet" th:href="@{/auth.css}">
 </head>
 <body>
 <div class="container">
+    <input type="checkbox" id="check" checked>
+
 
     <div class="registration form">
-        <header th:text="#{signup}">Signup</header>
-        <form action="/register" method="post">
-            <input type="text" placeholder="" th:placeholder="#{enterEmail}">
-            <input type="password" placeholder="" th:placeholder="#{createPassword}">
-            <input type="password" placeholder="" th:placeholder="#{confirmPassword}">
-            <input type="submit" class="button" th:value="#{signupButton}">
+        <header th:text="#{register.signupHeader}">Signup</header>
+
+        <form action="/register/step2" method="post">
+            <!-- Email Field -->
+            <label>
+                <input type="email" name="email" th:value="${email}" readonly>
+            </label>
+
+            <!-- Role Selection -->
+            <label for="role" th:text="#{register.selectRole}">Select Role</label>
+            <select id="role" name="role" required>
+                <option value="" disabled selected th:text="#{register.selectRole}">Select Role</option>
+                <option value="TEACHER" th:text="#{register.roleTeacher}">Teacher</option>
+                <option value="STUDENT" th:text="#{register.roleStudent}">Student</option>
+            </select>
+
+            <!-- First Name -->
+            <label>
+                <input type="text" name="firstName" placeholder="" th:placeholder="#{register.enterFirstName}">
+            </label>
+
+            <!-- Last Name -->
+            <label>
+                <input type="text" name="lastName" placeholder="" th:placeholder="#{register.enterLastName}">
+            </label>
+
+            <!-- Middle Name -->
+            <label>
+                <input type="text" name="middleName" placeholder="" th:placeholder="#{register.enterMiddleName}">
+            </label>
+
+            <!-- Age -->
+            <label>
+                <input type="number" name="age" placeholder="" th:placeholder="#{register.enterAge}" min="1" required>
+            </label>
+
+            <!-- Submit Button -->
+            <input type="submit" class="button" th:value="#{register.signupButton}">
         </form>
     </div>
 </div>

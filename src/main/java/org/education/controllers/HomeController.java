@@ -37,8 +37,8 @@ public class HomeController {
     public String welcomePage(@RequestParam(name = "msg", required = false, defaultValue = "Welcome to the Turoring Platform") String msg,Principal principal, Model model) {
         model.addAttribute("message", msg);
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        User user = (User) authentication.getPrincipal();
-        model.addAttribute("user", user);
+        //User user = (User) authentication.getPrincipal();
+        // model.addAttribute("user", user);
         return "hello";
     }
 }

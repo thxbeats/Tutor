@@ -26,12 +26,14 @@
 
     <div class="registration form">
         <header th:text="#{signup}">Signup</header>
-        <form action="/register" method="post">
-            <input type="text" placeholder="" th:placeholder="#{enterEmail}">
-            <input type="password" placeholder="" th:placeholder="#{createPassword}">
-            <input type="password" placeholder="" th:placeholder="#{confirmPassword}">
+        <form action="/register/step1" method="post">
+            <input type="text" name="email" placeholder="" th:placeholder="#{enterEmail}">
+            <input type="password" name="password" placeholder="" th:placeholder="#{createPassword}">
+            <input type="password" name="conf_password" placeholder="" th:placeholder="#{confirmPassword}">
             <input type="submit" class="button" th:value="#{signupButton}">
         </form>
+
+
         <div class="signup">
             <span class="signup" th:text="#{alreadyHaveAccount}">Already have an account?</span>
             <label for="check" th:text="#{header.login}">Login</label>
