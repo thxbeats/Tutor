@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Successful Registration</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #f8f9fa;
+        }
+        .card {
+            width: 100%;
+            max-width: 500px;
+        }
+    </style>
+</head>
+<body>
+<div class="card text-center">
+    <div class="card-header bg-success text-white">
+        <h4>Регистрация успешно завершена!</h4>
+    </div>
+    <div class="card-body">
+        <p class="mb-3">Ваши данные:</p>
+        <ul class="list-group list-group-flush text-start">
+            <li class="list-group-item"><strong>Имя:</strong> <span th:text="${firstName}">John</span></li>
+            <li class="list-group-item"><strong>Фамилия:</strong> <span th:text="${lastName}">Doe</span></li>
+            <li class="list-group-item"><strong>Отчество:</strong> <span th:text="${middleName}">Ivanovich</span></li>
+            <li class="list-group-item"><strong>Возраст:</strong> <span th:text="${age}">30</span></li>
+            <li class="list-group-item"><strong>Роль:</strong> <span th:text="${role}">TEACHER</span></li>
+            <li class="list-group-item"><strong>Электронная почта:</strong> <span th:text="${email}">example@mail.ru</span></li>
+        </ul>
+        <a href="/login" class="btn btn-primary mt-4">Войти</a>
+    </div>
+    <div class="card-footer text-muted">
+        Спасибо, что присоединились к нам!
+    </div>
+</div>
+</body>
+</html>
