@@ -16,14 +16,6 @@ import java.util.Locale;
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
 
-    // Определяем LocaleResolver, который будет хранить выбранную локаль в сессии
-    /*@Bean
-    public LocaleResolver localeResolver() {
-        SessionLocaleResolver slr = new SessionLocaleResolver();
-        slr.setDefaultLocale(Locale.ENGLISH);  // Локаль по умолчанию — английская
-        return slr;
-    }*/
-
     @Bean
     public RestTemplate restTemplate() {
         return new RestTemplate();

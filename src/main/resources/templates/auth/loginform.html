@@ -26,10 +26,53 @@
 
     <div class="registration form">
         <header th:text="#{signup}">Signup</header>
-        <form action="/register/step1" method="post">
-            <input type="text" name="email" placeholder="" th:placeholder="#{enterEmail}">
-            <input type="password" name="password" placeholder="" th:placeholder="#{createPassword}">
-            <input type="password" name="conf_password" placeholder="" th:placeholder="#{confirmPassword}">
+        <form action="/register/step1" method="post" th:object="${registrationDTO}">
+            <!-- Email Field -->
+            <label for="email">
+                <input id="email" type="email" name="email" th:value="*{email}" placeholder="" th:placeholder="#{enterEmail}" required />
+            </label>
+            <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+
+            <!-- Password Field -->
+            <label for="password">
+                <input id="password" type="password" name="password" th:value="*{password}" placeholder="" th:placeholder="#{createPassword}" required />
+            </label>
+            <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+
+            <!-- Confirm Password Field -->
+            <label for="confirmPassword">
+                <input id="confirmPassword" type="password" name="confirmPassword" th:value="*{confirmPassword}" placeholder="" th:placeholder="#{confirmPassword}" required />
+            </label>
+            <div th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}"></div>
+
+            <!-- First Name -->
+            <label for="firstName">
+                <input id="firstName" type="text" name="firstName" th:value="*{firstName}" placeholder="" th:placeholder="#{register.enterFirstName}" required />
+            </label>
+            <div th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></div>
+
+            <!-- Last Name -->
+            <label for="lastName">
+                <input id="lastName" type="text" name="lastName" th:value="*{lastName}" placeholder="" th:placeholder="#{register.enterLastName}" required />
+            </label>
+            <div th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></div>
+
+            <!-- Middle Name >
+            <label for="middleName">
+                <input id="middleName" type="text" name="middleName" th:value="*{middleName}" placeholder="" th:placeholder="#{register.enterMiddleName}" />
+            </label>
+            <div th:if="${#fields.hasErrors('middleName')}" th:errors="*{middleName}"></div -->
+
+
+
+            <!-- Role Selection -->
+            <label for="role" th:text="#{register.selectRole}">Select Role</label>
+            <select id="role" name="role" th:value="*{role}" required>
+                <option value="" disabled selected th:text="#{register.selectRole}">Select Role</option>
+                <option value="TEACHER" th:text="#{register.roleTeacher}">Teacher</option>
+                <option value="STUDENT" th:text="#{register.roleStudent}">Student</option>
+            </select>
+            <div th:if="${#fields.hasErrors('role')}" th:errors="*{role}"></div>
             <input type="submit" class="button" th:value="#{signupButton}">
         </form>
 

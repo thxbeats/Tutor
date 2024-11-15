@@ -2,6 +2,9 @@ package org.education.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.education.dto.UserDTO;
+import org.education.exceptions.EmailAlreadyInUseException;
+import org.education.exceptions.RoleNotFoundException;
+import org.education.exceptions.UsernameAlreadyInUseException;
 import org.education.model.Role;
 import org.education.model.User;
 import org.education.repository.RoleRepository;
@@ -29,32 +32,31 @@ public class UserServiceImpl implements UserService {
     public User registerNewUser(UserDTO userDTO) {
 
     String rawPassword = userDTO.getPassword();
-
         String encodedPassword = passwordConfig.hashPassword(rawPassword);
         userDTO.setPassword(encodedPassword);
 
     if (userRepository.findByUsername(userDTO.getUsername()).isPresent()) {
-        throw new RuntimeException("Username is already taken");
+        throw new UsernameAlreadyInUseException(userDTO.getUsername());
     }
     if (userRepository.findByEmail(userDTO.getEmail()).isPresent()) {
-        throw new RuntimeException("Email is already in use");
+        throw new EmailAlreadyInUseException(userDTO.getEmail());
     }
 
     // Создание нового пользователя
     User user = new User();
     user.setUsername(userDTO.getUsername());
-    user.setPassword(encodedPassword); // Используйте закодированный пароль
+    user.setPassword(encodedPassword);
     user.setEmail(userDTO.getEmail());
     user.setFirstName(userDTO.getFirstName());
     user.setLastName(userDTO.getLastName());
     user.setEnabled(true);
 
-    // Присвоение ролей
+
     Set<Role> roles = new HashSet<>();
     Optional<Role> userRole = roleRepository.findByName(userDTO.getRole());
     userRole.ifPresent(roles::add);
     if (roles.isEmpty()) {
-        throw new RuntimeException("Role not found");
+        throw new RoleNotFoundException("Role not found");
     }
     user.setRoles(roles);
 
