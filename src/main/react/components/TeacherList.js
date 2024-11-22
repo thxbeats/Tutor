@@ -1,4 +1,3 @@
-// components/TeacherList.js
 import React, { useEffect, useState } from 'react';
 import TeacherCard from './TeacherCard';
 

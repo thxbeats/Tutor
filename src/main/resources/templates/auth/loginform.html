@@ -18,10 +18,18 @@
             <a href="#" th:text="#{forgotPassword}">Forgot password?</a>
             <input type="submit" class="button" th:value="#{loginButton}" />
         </form>
+        <div th:if="${errorMessage}" class="error">
+            <p th:text="${errorMessage}"></p>
+        </div>
+        <div th:if="${logoutMessage}" class="success">
+            <p th:text="${logoutMessage}"></p>
+        </div>
+
         <div class="signup">
             <span class="signup" th:text="#{dontHaveAccount}">Don't have an account?</span>
             <label for="check" th:text="#{signup}">Signup</label>
         </div>
+
     </div>
 
     <div class="registration form">

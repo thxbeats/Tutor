@@ -25,8 +25,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-@Import(TestSecurityConfig.class) // Подключаем конфигурацию для тестов
 
+@Import(TestSecurityConfig.class) // Подключаем конфигурацию для тестов
 class UserServiceTest {
 
     @Mock

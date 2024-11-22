@@ -1,15 +1,20 @@
 package org.education.config;
 
 import org.education.service.CustomUserDetailsService;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.config.annotation.web.configurers.CorsConfigurer;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.servlet.LocaleResolver;
+
+import java.util.Locale;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
@@ -43,7 +48,7 @@ public class SecurityConfig {
 */
     // Существующий метод конфигурации безопасности
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http, MessageSource messageSource,  LocaleResolver localeResolver) throws Exception {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorize -> authorize
@@ -51,7 +56,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/admin/**").hasRole("ADMIN")
                         .requestMatchers("/api/teachers/getTeachers").permitAll()
                         // .requestMatchers("/api/teachers/**").hasAnyRole("TEACHER", "ADMIN")
-                        .requestMatchers("/api/teachers/**").permitAll()
+                        .requestMatchers("/api/teachers/**").hasAnyRole("TEACHER", "ADMIN")
                         .requestMatchers("/api/student/**").hasAnyRole("STUDENT", "ADMIN")
                         .requestMatchers("/css/**", "/js/**", "/images/**", "/auth.css").permitAll()
                         .requestMatchers("/login", "/login?lang=ru", "/login?lang=en").permitAll()
@@ -61,10 +66,30 @@ public class SecurityConfig {
                 .formLogin(form -> form
                         .loginPage("/login")
                         .permitAll()
-                      //  .defaultSuccessUrl("/", true)
-                        )
+                        //  .defaultSuccessUrl("/", true)
+                        .failureHandler((request, response, exception) -> {
+                            String errorMessage;
+                            Locale locale = localeResolver.resolveLocale(request);; // Определяем текущую локаль
+
+                            if (exception instanceof BadCredentialsException) {
+                                errorMessage = messageSource.getMessage("error.bad_credentials", null, locale);
+                            } else if (exception instanceof DisabledException) {
+                                errorMessage = messageSource.getMessage("error.account_disabled", null, locale);
+                            } else {
+                                errorMessage = messageSource.getMessage("error.generic", null, locale);
+                            }
+                            request.getSession().setAttribute("errorMessage", errorMessage);
+                            response.sendRedirect("/login?error=true");
+                        }))
                 .httpBasic(withDefaults())
-                .logout(withDefaults()
+                .logout(logout -> logout
+                        .logoutSuccessHandler((request, response, authentication) -> {
+                            Locale locale = localeResolver.resolveLocale(request);
+                            String logoutMessage = messageSource.getMessage("logout.success", null, locale);
+                            request.getSession().setAttribute("logoutMessage", logoutMessage);
+                            response.sendRedirect("/login?logout=true");
+                        })
+                        .permitAll()
                 );
 
         return http.build();

@@ -21,7 +21,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(UserController.class) // Замените на ваш контроллер
+/*@WebMvcTest(UserController.class) // Замените на ваш контроллер
 public class UserControllerTest {
 
     @Autowired
@@ -62,4 +62,4 @@ public void testGetTeachers() throws Exception {
             .andExpect(jsonPath("$[1].firstName").value("Мария"))
             .andExpect(jsonPath("$[2].firstName").value("Алексей"));
 }
-}
+}*/

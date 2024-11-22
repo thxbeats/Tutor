@@ -2,6 +2,7 @@ package org.education.controllers.auth;
 
 import org.education.dto.RegistrationDTO;
 import org.education.dto.UserDTO;
+import org.education.exceptions.EmailAlreadyInUseException;
 import org.education.mapper.RegistrationMapper;
 import org.education.model.User;
 import org.education.service.UserService;
@@ -57,7 +58,9 @@ public class RegistrationController {
         model.addAttribute("role", formUserDTO.getRole());
         model.addAttribute("email", formUserDTO.getEmail());
         return "./auth/registeredUser";}
-        catch (Exception e){
+        catch (EmailAlreadyInUseException e){
+
+
             return "./auth/loginform" ;
     }
 
@@ -79,8 +82,19 @@ public class RegistrationController {
 
 
     @GetMapping("/login")
-    public String showLoginForm(Model model) {
-        model.addAttribute("registrationDTO", new RegistrationDTO()); // добавляем пустой объект для формы
+    public String showLoginForm(@RequestParam(value = "error", required = false) String error,
+                                 @RequestParam(value = "logout", required = false) String logout,
+                                 Model model,
+                                 HttpSession session) {
+        model.addAttribute("registrationDTO", new RegistrationDTO());
+        if (error != null) {
+            model.addAttribute("errorMessage", session.getAttribute("errorMessage"));
+            session.removeAttribute("errorMessage");
+        }
+        if (logout != null) {
+            model.addAttribute("logoutMessage", session.getAttribute("logoutMessage"));
+            session.removeAttribute("logoutMessage");
+        }
         return "./auth/loginform"; // возвращает шаблон register.html
     }
 
