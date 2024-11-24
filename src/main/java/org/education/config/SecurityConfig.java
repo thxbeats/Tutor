@@ -70,12 +70,14 @@ public class SecurityConfig {
                         .failureHandler((request, response, exception) -> {
                             String errorMessage;
                             Locale locale = localeResolver.resolveLocale(request);; // Определяем текущую локаль
-
+                            Throwable cause = exception.getCause();
                             if (exception instanceof BadCredentialsException) {
                                 errorMessage = messageSource.getMessage("error.bad_credentials", null, locale);
-                            } else if (exception instanceof DisabledException) {
+                            } else if (cause instanceof DisabledException) {
                                 errorMessage = messageSource.getMessage("error.account_disabled", null, locale);
-                            } else {
+                                System.out.println("HEY, I AM HERE!");
+                            }
+                            else {
                                 errorMessage = messageSource.getMessage("error.generic", null, locale);
                             }
                             request.getSession().setAttribute("errorMessage", errorMessage);
