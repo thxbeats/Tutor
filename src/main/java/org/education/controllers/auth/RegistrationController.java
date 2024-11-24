@@ -59,8 +59,9 @@ public class RegistrationController {
         model.addAttribute("email", formUserDTO.getEmail());
         return "./auth/registeredUser";}
         catch (EmailAlreadyInUseException e){
-
-
+            model.addAttribute("errorMessage", e.getMessage());
+            model.addAttribute("showRegistrationForm", true);
+            System.out.println("EMAIL IN USE!");
             return "./auth/loginform" ;
     }
 

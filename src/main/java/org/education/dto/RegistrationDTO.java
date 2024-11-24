@@ -42,4 +42,9 @@ public class RegistrationDTO {
 
     private String username;
 
+    @AssertTrue(message = "{confirmPassword}")
+    private boolean isPasswordConfirmed() {
+        return this.password != null && this.password.equals(this.confirmPassword);
+    }
+
 }

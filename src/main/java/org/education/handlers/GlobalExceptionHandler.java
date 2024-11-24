@@ -15,7 +15,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(BaseException.class)
     public ResponseEntity<ErrorResponse> handleBaseException(BaseException ex) {
-        //logger.error("BaseException occurred: {} - {}", ex.getErrorCode(), ex.getMessage());
+        System.out.println("BaseException occurred: {} - {}" + ex.getErrorCode() + ex.getMessage());
         ErrorResponse errorResponse = new ErrorResponse(ex.getMessage(), ex.getErrorCode());
         return ResponseEntity.badRequest().body(errorResponse);
     }
@@ -23,6 +23,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleGenericException(Exception ex) {
         //logger.error("Unexpected error occurred", ex);
+        System.out.println(ex.getMessage());
         ErrorResponse errorResponse = new ErrorResponse("Unexpected error", "INTERNAL_ERROR");
         return ResponseEntity.internalServerError().body(errorResponse);
     }

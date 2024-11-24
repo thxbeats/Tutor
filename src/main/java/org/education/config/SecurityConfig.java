@@ -69,7 +69,7 @@ public class SecurityConfig {
                         //  .defaultSuccessUrl("/", true)
                         .failureHandler((request, response, exception) -> {
                             String errorMessage;
-                            Locale locale = localeResolver.resolveLocale(request);; // Определяем текущую локаль
+                            Locale locale = localeResolver.resolveLocale(request); // Определяем текущую локаль
                             Throwable cause = exception.getCause();
                             if (exception instanceof BadCredentialsException) {
                                 errorMessage = messageSource.getMessage("error.bad_credentials", null, locale);
