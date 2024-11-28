@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.util.Arrays;
+
 @RestControllerAdvice
 public class GlobalExceptionHandler {
     //private static final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
@@ -24,6 +26,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResponse> handleGenericException(Exception ex) {
         //logger.error("Unexpected error occurred", ex);
         System.out.println(ex.getMessage());
+
         ErrorResponse errorResponse = new ErrorResponse("Unexpected error", "INTERNAL_ERROR");
         return ResponseEntity.internalServerError().body(errorResponse);
     }

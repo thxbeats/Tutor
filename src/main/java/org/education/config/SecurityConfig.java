@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.servlet.LocaleResolver;
 
@@ -88,11 +89,19 @@ public class SecurityConfig {
                         .logoutSuccessHandler((request, response, authentication) -> {
                             Locale locale = localeResolver.resolveLocale(request);
                             String logoutMessage = messageSource.getMessage("logout.success", null, locale);
+                            SecurityContextHolder.clearContext(); // Очищаем SecurityContext явно
+                            System.out.println("Authentication after logout: " + SecurityContextHolder.getContext().getAuthentication());
+
                             request.getSession().setAttribute("logoutMessage", logoutMessage);
                             response.sendRedirect("/login?logout=true");
+
                         })
                         .permitAll()
+                        .clearAuthentication(true)
+                        .invalidateHttpSession(true)
+                        .deleteCookies("JSESSIONID")
                 );
+
 
         return http.build();
     }

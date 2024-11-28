@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет</title>
+    <link rel="stylesheet" href="lk.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="header.css">
+
+</head>
+<body>
+<th:block th:replace="~{header}"></th:block>
+<div class="profile-container">
+
+        <h1>Личный кабинет</h1>
+
+    <section class="profile-info">
+        <h2>Информация о пользователе</h2>
+
+        <div class="profile-details">
+
+
+            <div class="profile-item">
+                <label for="full-name">Полное имя:</label>
+                <p id="full-name">Иван Смит</p>
+            </div>
+
+            <div class="profile-item">
+                <label for="email">Электронная почта:</label>
+                <p id="email"><span th:text="${email}"></span></p>
+            </div>
+
+            <div class="profile-item">
+                <label for="created-at">Дата регистрации:</label>
+                <p id="created-at">2024-01-15 14:30:00</p>
+            </div>
+
+            <div class="profile-item">
+                <label for="roles">Роли:</label>
+                <p id="roles"><span th:text="${roles}"></span></p>
+            </div>
+        </div>
+    </section>
+</div>
+</body>
+</html>
