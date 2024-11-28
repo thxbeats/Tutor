@@ -39,11 +39,11 @@ public class UserServiceImpl implements UserService {
         if (userRepository.findByEmail(userDTO.getEmail()).isPresent()) {
             throw new EmailAlreadyInUseException(userDTO.getEmail());
         }
-
-        if (userRepository.findByUsername(userDTO.getUsername()).isPresent()) {
+/* Неактуально, т.к. username = email
+       if (userRepository.findByUsername(userDTO.getUsername()).isPresent()) {
             throw new UsernameAlreadyInUseException(userDTO.getUsername());
         }
-
+*/
 
         // Создание нового пользователя
         User user = new User();
