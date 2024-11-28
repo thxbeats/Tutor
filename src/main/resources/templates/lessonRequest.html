@@ -2,14 +2,14 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Заявка на урок</title>
+    <title th:text="#{lessonRequest.title}">Заявка на урок</title>
     <link rel="stylesheet" href="styles-tables.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" th:href="@{header.css}">
 </head>
 <body>
-    <th:block th:replace="~{header}"></th:block>
-<h1>Заявка на урок</h1>
+<th:block th:replace="~{header}"></th:block>
+<h1 th:text="#{lessonRequest.header}">Заявка на урок</h1>
 
 <div id="errorMessages">
     <ul>
@@ -22,47 +22,45 @@
 <form action="#" th:action="@{/submitRequest}" method="post">
     <div class="form-container">
         <div class="form-group">
-            <label for="name">Имя:</label>
+            <label for="name" th:text="#{lessonRequest.name}">Имя:</label>
             <!-- Предзаполнение поля значением из cookie -->
             <input type="text" id="name" name="name" th:value="${savedName}" required minlength="2">
-
-
         </div>
 
         <div class="form-group">
-            <label for="subject">Предмет:</label>
+            <label for="subject" th:text="#{lessonRequest.subject}">Предмет:</label>
             <!-- Предзаполнение поля значением из cookie -->
             <input type="text" id="subject" name="subject" th:value="${savedSubject}" required>
         </div>
 
         <div class="form-group">
-            <label for="date">Дата:</label>
+            <label for="date" th:text="#{lessonRequest.date}">Дата:</label>
             <!-- Предзаполнение поля значением из cookie -->
             <input type="date" id="date" name="date" th:value="${savedDate}" required>
         </div>
 
-        <button class="btn" type="submit">Отправить заявку</button>
+        <button class="btn" type="submit" th:text="#{lessonRequest.submitButton}">Отправить заявку</button>
     </div>
 </form>
-    <div class="container">
-<h1>Созданные заявки</h1>
+<div class="container">
+    <h1 th:text="#{lessonRequest.createdRequestsHeader}">Созданные заявки</h1>
 
-<table class="styled-table">
-    <thead>
-    <tr>
-        <th>Имя</th>
-        <th>Предмет</th>
-        <th>Дата</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="request : ${requests}">
-        <td th:text="${request.name}"></td>
-        <td th:text="${request.subject}"></td>
-        <td th:text="${request.date}"></td>
-    </tr>
-    </tbody>
-</table>
+    <table class="styled-table">
+        <thead>
+        <tr>
+            <th th:text="#{lessonRequest.table.name}">Имя</th>
+            <th th:text="#{lessonRequest.table.subject}">Предмет</th>
+            <th th:text="#{lessonRequest.table.date}">Дата</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="request : ${requests}">
+            <td th:text="${request.name}"></td>
+            <td th:text="${request.subject}"></td>
+            <td th:text="${request.date}"></td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 </body>
 </html>

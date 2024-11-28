@@ -85,7 +85,6 @@ public class RegistrationController {
             model.addAttribute("showRegistrationForm", true);
             System.out.println("ERROR!: \n" + e.getMessage());
             return "./auth/loginform";
-
         }
     }
 
