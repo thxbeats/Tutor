@@ -10,6 +10,7 @@ import org.education.model.User;
 import org.education.repository.RoleRepository;
 import org.education.repository.UserRepository;
 import org.education.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -23,11 +24,11 @@ import java.util.Set;
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
-
+    @Autowired
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final PasswordConfig passwordConfig;
-    ;
+
 
     @Override
     @Transactional

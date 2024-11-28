@@ -182,3 +182,60 @@ input.check-toggle-round-flat:checked + label:after {
 input.check-toggle-round-flat:checked + label {
   background-color: #007c63; /* Цвет фона в активном состоянии */
 }
+.language-dropdown {
+    position: relative;
+    display: inline-block;
+    margin-left: auto; /* Сдвигаем контейнер с кнопкой языка вправо */
+
+}
+
+.dropdown-toggle {
+    display: flex;
+    align-items: center;
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.dropdown-toggle:hover {
+    background-color: #444;
+}
+
+.flag-icon {
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+}
+
+.dropdown-menu {
+    display: none; /* Меню скрыто по умолчанию */
+    position: absolute;
+    background-color: #333;
+    color: white;
+    border-radius: 5px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    margin-top: 5px;
+    z-index: 1000;
+    min-width: 150px;
+}
+
+.dropdown-menu .dropdown-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+.dropdown-menu .dropdown-item:hover {
+    background-color: #444;
+}
+
+.language-dropdown.active .dropdown-menu {
+    display: block; /* Показываем меню при активном состоянии */
+}

@@ -15,8 +15,23 @@
 	    <span class="on">RU</span>
 	    <span class="off">EN</span>
   	</div-->
-        <button class="change-lang" data-lang="en">English</button>
-        <button class="change-lang" data-lang="ru">Русский</button>
+
+        <div class="language-dropdown">
+            <button class="dropdown-toggle">
+                <img class="flag-icon" alt="Language" src="/images/flags/lang.png" />
+                <span class="language-text" th:text="#{language}">Language</span>
+            </button>
+            <div class="dropdown-menu">
+                <a href="#" class="dropdown-item" data-lang="en">
+                    <img src="/images/flags/en.png" class="flag-icon" alt="English" /> English
+                </a>
+                <a href="#" class="dropdown-item" data-lang="ru">
+                    <img src="/images/flags/ru.png" class="flag-icon" alt="Русский" /> Русский
+                </a>
+            </div>
+        </div>
+
+
 
 
         <div class="auth-buttons">
