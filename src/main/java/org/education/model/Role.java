@@ -3,9 +3,12 @@ package org.education.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.context.MessageSource;
 import org.springframework.security.core.GrantedAuthority;
 
+import java.util.Locale;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "roles", schema = "auth")
@@ -35,5 +38,10 @@ public class Role implements GrantedAuthority {
     @Override
     public String getAuthority() {
         return name;
+    }
+    public String formatRoles(Set<Role> roles, MessageSource messageSource, Locale locale) {
+        return roles.stream()
+                .map(role -> messageSource.getMessage("role." + role.getName(), null, locale)) // Перевод роли
+                .collect(Collectors.joining(", ")); // Соединяем роли через запятую
     }
 }

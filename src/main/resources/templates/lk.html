@@ -20,10 +20,9 @@
 
         <div class="profile-details">
 
-
             <div class="profile-item">
                 <label for="full-name">Полное имя:</label>
-                <p id="full-name">Иван Смит</p>
+                <p id="full-name"><span th:text="${full_name}"></span></p>
             </div>
 
             <div class="profile-item">
@@ -33,12 +32,12 @@
 
             <div class="profile-item">
                 <label for="created-at">Дата регистрации:</label>
-                <p id="created-at">2024-01-15 14:30:00</p>
+                <p id="created-at"><span th:text="${created_at}"></span></p>
             </div>
 
             <div class="profile-item">
                 <label for="roles">Роли:</label>
-                <p id="roles"><span th:text="${roles}"></span></p>
+                <p id="roles"><span th:each="role : ${localizedRoles}" th:text="${role}"></span></p>
             </div>
         </div>
     </section>

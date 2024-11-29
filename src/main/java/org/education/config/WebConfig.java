@@ -2,6 +2,7 @@ package org.education.config;
 
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -36,7 +37,7 @@ public class WebConfig implements WebMvcConfigurer {
 
 
 
-    // Определяем источник сообщений для разных языков
+
     @Bean
     public MessageSource messageSource() {
         ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();

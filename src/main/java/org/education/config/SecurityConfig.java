@@ -52,6 +52,8 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http, MessageSource messageSource,  LocaleResolver localeResolver) throws Exception {
         http
                 .csrf(AbstractHttpConfigurer::disable)
+
+
                 .authorizeHttpRequests(authorize -> authorize
 
                         .requestMatchers("/api/admin/**").hasRole("ADMIN")
@@ -99,7 +101,7 @@ public class SecurityConfig {
                         .permitAll()
                         .clearAuthentication(true)
                         .invalidateHttpSession(true)
-                        .deleteCookies("JSESSIONID")
+                        .deleteCookies("JSESSIONID","remember-me")
                 );
 
 
