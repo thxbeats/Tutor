@@ -1,6 +1,6 @@
 /* Общие стили для страницы */
 body {
-    font-family: Arial, sans-serif;
+    font-family: Poppins, sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
@@ -60,6 +60,9 @@ nav ul li {
 }
 
 main {
+    width: 80%;
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 20px 0;
 }
 
@@ -72,4 +75,48 @@ footer {
     position: absolute;
     bottom: 0;
     width: 100%;
+}
+
+.subjects-grid {
+     display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.subject-card {
+    width: min-content;
+    padding: 10px 20px;
+    border-radius: 30px;
+    background: #f3f3f3;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: Poppins, sans-serif;
+    font-size: 100%;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    align-items: center;
+    white-space: nowrap;
+    display: flex;
+    height: min-content;
+    max-width: 400px;
+}
+
+.subject-card:hover {
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.color1 {
+    background-color: #6c63ff; /* Фиолетовый */
+}
+.color2 {
+    background-color: #f95d6a; /* Красно-розовый */
+}
+.color3 {
+    background-color: #3ec1d3; /* Голубой */
+}
+.color4 {
+    background-color: #ff9a76; /* Оранжевый */
 }

@@ -24,13 +24,23 @@
     <th:block th:replace="~{header}"></th:block>
 
     <main>
-        <h2 align="center" th:text="#{welcome.message}">Placeholder message</h2>
-        <p align="center" th:text="#{welcome.description}">Explore our platform to find the best tutors for your needs!</p>
+        <div class="site-container">
+            <h2 align="center" th:text="#{welcome.message}">Placeholder message</h2>
+            <p align="center" th:text="#{welcome.description}">Explore our platform to find the best tutors for your needs!</p>
 
+            <div class="subjects-grid">
+                <th:block th:each="subjectElement, iterStat: ${subjectElement}">
+                    <div class="subject-card"
+                         th:classappend="${iterStat.index % 4 == 0} ? ' color1' : (${iterStat.index % 4 == 1} ? ' color2' : (${iterStat.index % 4 == 2} ? ' color3' : ' color4'))">
+                        <span th:text="${subjectElement.getName().toUpperCase()}">Subject</span>
+                    </div>
+                </th:block>
+            </div>
+        </div>
     </main>
 
     <footer>
-        <p th:text="#{footer.copy}">&copy; 2024 Tutoring Platform. All rights reserved.</p>
+        <p th:text="#{footer.copy}">&copy; 2025 Tutoring Platform. All rights reserved.</p>
     </footer>
 </div>
 </body>
