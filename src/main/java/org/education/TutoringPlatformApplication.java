@@ -8,6 +8,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class TutoringPlatformApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(TutoringPlatformApplication.class, args);
+        try{
+            SpringApplication.run(TutoringPlatformApplication.class, args);
+        }
+        catch (Exception e){
+            System.out.println(e);
+        }
     }
 }

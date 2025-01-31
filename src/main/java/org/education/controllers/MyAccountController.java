@@ -58,7 +58,7 @@ public class MyAccountController {
 
         model.addAttribute("email", user.getEmail());
         model.addAttribute("localizedRoles", formattedRoles);
-        model.addAttribute("full_name", user.getFirstName() + user.getLastName());
+        model.addAttribute("full_name", String.format("%s %s", user.getFirstName(), user.getLastName()));
         model.addAttribute("created_at", parsed_date);
 
 

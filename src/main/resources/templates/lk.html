@@ -13,30 +13,30 @@
 <th:block th:replace="~{header}"></th:block>
 <div class="profile-container">
 
-        <h1>Личный кабинет</h1>
+        <h1 th:text="#{lk.myAccount}">Личный кабинет</h1>
 
     <section class="profile-info">
-        <h2>Информация о пользователе</h2>
+        <h2 th:text="#{lk.info}">Информация о пользователе</h2>
 
         <div class="profile-details">
 
             <div class="profile-item">
-                <label for="full-name">Полное имя:</label>
+                <label for="full-name" th:text="#{lk.full_name}">Полное имя:</label>
                 <p id="full-name"><span th:text="${full_name}"></span></p>
             </div>
 
             <div class="profile-item">
-                <label for="email">Электронная почта:</label>
+                <label for="email"  th:text="#{lk.email}">Электронная почта:</label>
                 <p id="email"><span th:text="${email}"></span></p>
             </div>
 
             <div class="profile-item">
-                <label for="created-at">Дата регистрации:</label>
+                <label for="created-at"  th:text="#{lk.registrationDate}">Дата регистрации:</label>
                 <p id="created-at"><span th:text="${created_at}"></span></p>
             </div>
 
             <div class="profile-item">
-                <label for="roles">Роли:</label>
+                <label for="roles"  th:text="#{lk.roles}">Роли:</label>
                 <p id="roles"><span th:each="role : ${localizedRoles}" th:text="${role}"></span></p>
             </div>
         </div>
